@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './styles.css';
 
 
-class App extends Comment {
+class App extends Component {
   render() {
     return (
       <div />
