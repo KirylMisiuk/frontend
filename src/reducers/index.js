@@ -1,8 +1,8 @@
-const initialValues = {};
+import {combineReducers} from 'redux';
+import books from './books';
+import libraries from './libraries';
 
-const app = (state = initialValues, actions) => {
-  switch (actions.type) {
-    default: return state;
-  }
-};
-export default app;
+const rootReducer = combineReducers({
+  books, libraries
+});
+export default rootReducer;
