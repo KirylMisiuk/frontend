@@ -2,10 +2,12 @@ import React, {PureComponent} from 'react';
 import '../styles.css';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import BookList from '../BookList';
 import {
   BrowserRouter, Route, Switch, Redirect
 } from 'react-router-dom';
+import BookList from '../BookList';
+import BookPage from '../BookPage';
+
 import {loadBooks} from '../../reducers/books';
 
 class App extends PureComponent {
@@ -22,7 +24,8 @@ class App extends PureComponent {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" component={BookList} exact/>
+          <Route path="/" component={BookList} exact />
+          <Route path="/books/:id" component={BookPage} />
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>

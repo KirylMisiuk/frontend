@@ -1,0 +1,22 @@
+.book-container {
+  width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.book-info {
+  width: 400px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-text {
+  overflow-y: scroll;
+  max-height: 400px;
+}
+

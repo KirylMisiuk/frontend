@@ -1,0 +1,20 @@
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1600px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.dashboard-item {
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 5px 5px 3px 0px rgba(163,163,163,1);
+  height: 293px;
+  position: relative;
+}
+.dashboard-item-image {
+  border-radius: 10px 10px 10px 10px;
+}
+
+
