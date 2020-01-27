@@ -1,10 +1,14 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {selectBooks} from '../../reducers/books';
 import BookListItem from './BookListItem';
 import './styles.css';
+import {selectBooks} from '../../reducers/books';
+import BookActions from '../../actions/BookActions';
 
 class BookList extends PureComponent {
+  componentDidMount() {
+    this.props.fetchData();
+  }
   render() {
     const {books} = this.props;
     return (
@@ -20,5 +24,11 @@ class BookList extends PureComponent {
 const mapStateToProps = (state) => ({
   books: selectBooks(state)
 });
+const mapDispatchToProps = (dispatch) => {
+  const bookActions = new BookActions();
+  return {
+    fetchData: () => { dispatch(bookActions.getAllBooks()); }
+  };
+};
 
-export default connect(mapStateToProps)(BookList);
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);
