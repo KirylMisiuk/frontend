@@ -1,4 +1,6 @@
-
+const initalState = {
+  books: []
+};
 // Constants
 const LOAD_BOOKS = 'LOAD_BOOKS';
 const LOAD_BOOKS_SUCCESS = 'LOAD_BOOKS_SUCCESS';
@@ -6,28 +8,23 @@ const FAIL_LOAD_BOOKS = 'FAIL_LOAD_BOOKS';
 
 const LOAD_BOOK = 'LOAD_BOOK';
 const LOAD_BOOK_SUCCESS = 'LOAD_BOOK_SUCCESS';
-const FAIL_LOAD_BOOK = 'FAIL_LOAD_BOOK';
+const FAIL_LOAD_BOOK = 'FAIL_LOAD_BOOKS';
 
 
-const books = (state = [], action) => {
+const books = (state = initalState, action) => {
   console.log(action.type);
   switch (action.type) {
-    case LOAD_BOOK:
     case LOAD_BOOKS:
       return state;
     case LOAD_BOOKS_SUCCESS: {
       return {
+        ...state,
         books: action.books
       };
     }
-    case LOAD_BOOK_SUCCESS: {
-      return {
-        ...action.books
-      };
-    }
-    case FAIL_LOAD_BOOK:
     case FAIL_LOAD_BOOKS:
       return {
+        ...state,
         error: action.error
       };
     default:
