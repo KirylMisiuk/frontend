@@ -1,12 +1,12 @@
 import React, {PureComponent} from 'react';
 import '../styles.css';
-import {connect} from 'react-redux';
 import {
   BrowserRouter, Route, Switch, Redirect
 } from 'react-router-dom';
 
 import BookList from '../BookList';
 import BookPage from '../BookPage';
+
 
 
 class App extends PureComponent {

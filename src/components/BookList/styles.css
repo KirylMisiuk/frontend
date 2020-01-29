@@ -1,20 +1,48 @@
 .dashboard-container {
   display: flex;
   flex-wrap: wrap;
-  width: 1600px;
-  margin: 0 auto;
-  margin-top: 20px;
+  width: 1400px;
+  margin: 20px auto 0;
 }
-
 .dashboard-item {
-  margin: auto;
+  margin: 15px;
   border-radius: 10px;
-  box-shadow: 5px 5px 3px 0px rgba(163,163,163,1);
+  box-shadow: 10px 10px 5px 0px rgba(163,163,163,1);
   height: 293px;
   position: relative;
 }
 .dashboard-item-image {
   border-radius: 10px 10px 10px 10px;
+  opacity:1;
+}
+
+.dashboard-item-image-hover{
+  border-radius: 10px 10px 10px 10px;
+  opacity:.50;
 }
 
 
+.icon-container {
+  margin-right: 15px;
+}
+.info-icon {
+  color: #800c19;
+  margin-right: 15px;
+}
+.trash-icon {
+  color: #241a80;
+  margin-right: 15px;
+}
+.edit-icon {
+  color: #188022;
+  margin-right: 15px;
+}
+
+.additional-info {
+  font-size: 20px;
+  position: absolute;
+  top: 60%;
+  left: 25%;
+  color: black;
+  display: flex;
+}

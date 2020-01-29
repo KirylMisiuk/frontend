@@ -1,17 +1,17 @@
-class ActionCreators {
+
+class BookEffects {
   constructor(bookActions) {
     this.bookActions = bookActions;
   }
 
   getAll() {
     return (dispatch) => {
-      dispatch(this.bookActions.loadingBooks(true));
+      dispatch(this.bookActions.loadingBooks());
       fetch('http://localhost:2000/books')
         .then((res) => {
           if (!res.ok) {
             throw Error(res.statusText);
           }
-          dispatch(this.bookActions.loadingBooks(false));
           return res;
         })
         .then((res) => res.json())
@@ -28,13 +28,12 @@ class ActionCreators {
           if (!res.ok) {
             throw Error(res.statusText);
           }
-          dispatch(this.bookActions.loadingBook(false));
           return res;
         })
         .then((res) => res.json())
         .then(({data}) => dispatch(this.bookActions.loadBookSuccess(data)))
-        .catch(() => dispatch(this.bookActions.loadBookFail(true)));
+        .catch((err) => dispatch(this.bookActions.loadBookFail(err)));
     };
   }
 }
-module.exports = ActionCreators;
+export default BookEffects

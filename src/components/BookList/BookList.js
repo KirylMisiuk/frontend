@@ -2,9 +2,9 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import BookListItem from './BookListItem';
 import './styles.css';
-import BookActions from '../../actions/BookActions';
-import ActionCreators from '../../actions/ActionCreators';
-import {selectBooks} from '../../reducers/books';
+import BookActions from '../../store/actions/BookActions';
+import ActionCreators from '../../store/effects/BookEffects';
+import {selectBooks, selectStatus, selectError} from '../../store/selectors/BookSelectors';
 
 class BookList extends PureComponent {
   componentDidMount() {
@@ -12,8 +12,18 @@ class BookList extends PureComponent {
   }
 
   render() {
-    const {books} = this.props;
-    console.log(books);
+    const {books, error, loading} = this.props;
+    if (error) {
+      return (
+        <p>
+        Error: {error}
+        </p>
+      );
+    }
+    if (loading) {
+      return <p>Loading…</p>;
+    }
+
     return (
       <div className="dashboard-container">
         {books.map((book) => (
@@ -29,7 +39,9 @@ const actionCreators = new ActionCreators(bookActions);
 
 
 const mapStateToProps = (state) => ({
-  books: selectBooks(state)
+  books: selectBooks(state),
+  loading: selectStatus(state),
+  error: selectError(state)
 });
 const mapDispatchToProps = (dispatch) => ({
   getAll: () => { dispatch(actionCreators.getAll()); }
