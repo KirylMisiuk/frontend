@@ -1,15 +1,17 @@
 import {
   BOOK_LOAD,
-  BOOKS_LOAD, FAIL_LOAD_BOOK,
+  BOOKS_LOAD,
+  DELETE_BOOK,
+  FAIL_LOAD_BOOK,
   FAIL_LOAD_BOOKS,
   initalState,
   LOAD_BOOK_SUCCESS,
-  LOAD_BOOKS_SUCCESS
-} from "./BookReducerTypes";
+  LOAD_BOOKS_SUCCESS,
+} from './BookReducerTypes';
 
 
-const books = (state = initalState, action) => {
-  console.log(action);
+const loadReducer = (state = initalState, action) => {
+  console.log(action.type);
   switch (action.type) {
     case BOOKS_LOAD:
     case BOOK_LOAD:
@@ -21,25 +23,27 @@ const books = (state = initalState, action) => {
       return {
         ...state,
         books: action.books,
-        loading: false
+        loading: false,
       };
     }
     case LOAD_BOOK_SUCCESS: {
       return {
         ...state,
         book: action.book,
-        loading: false
+        loading: false,
       };
     }
     case FAIL_LOAD_BOOKS:
     case FAIL_LOAD_BOOK: {
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
       }; }
     default:
       return state;
   }
 };
-export default books;
 
+export const reducers = {
+  books: loadReducer,
+};

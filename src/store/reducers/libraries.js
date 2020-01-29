@@ -1,5 +1,5 @@
 const initalState = {
-  libraries: []
+  libraries: [],
 };
 
 const libraries = (state = initalState, action) => {

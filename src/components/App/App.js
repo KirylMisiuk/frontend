@@ -17,7 +17,7 @@ class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route path="/" component={BookList} exact />
-            <Route path="/books/:id" component={BookPage} />
+            <Route path="/bookReducers/:id" component={BookPage} />
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>

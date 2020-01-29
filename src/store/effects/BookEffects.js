@@ -35,5 +35,6 @@ class BookEffects {
         .catch((err) => dispatch(this.bookActions.loadBookFail(err)));
     };
   }
+
 }
 export default BookEffects

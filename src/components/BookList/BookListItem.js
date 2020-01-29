@@ -13,9 +13,7 @@ class BookListItem extends PureComponent {
   };
 
   handleMouseOver = () => this.setState({isMouseOver: true});
-
   handleMouseLeave = () => this.setState({isMouseOver: false});
-
 
   render() {
     const {book} = this.props;
@@ -38,7 +36,7 @@ class BookListItem extends PureComponent {
               <div className="additional-info">
                 <div className="icon-container">
                   <Link to={`/books/${book._id}`}>
-                  <i className="fas fa-info-circle fa-2x info-icon" />
+                   <i className="fas fa-info-circle fa-2x info-icon" />
                   </Link>
                   <i className="fas fa-trash-alt fa-2x trash-icon"/>
                   <i className="fas fa-edit fa-2x edit-icon"/>

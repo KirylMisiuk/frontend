@@ -1,7 +1,6 @@
-import {combineReducers} from 'redux';
-import books from './books';
-import libraries from './libraries';
+import { combineReducers } from 'redux';
+import { reducers } from './BookReducers';
 
 
-const rootReducer = combineReducers({books, libraries});
+const rootReducer = combineReducers(reducers);
 export default rootReducer;

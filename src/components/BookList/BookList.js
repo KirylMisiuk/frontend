@@ -1,10 +1,10 @@
-import React, {PureComponent} from 'react';
-import {connect} from 'react-redux';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import BookListItem from './BookListItem';
 import './styles.css';
 import BookActions from '../../store/actions/BookActions';
 import ActionCreators from '../../store/effects/BookEffects';
-import {selectBooks, selectStatus, selectError} from '../../store/selectors/BookSelectors';
+import { selectBooks, selectStatus, selectError } from '../../store/selectors/BookSelectors';
 
 class BookList extends PureComponent {
   componentDidMount() {
@@ -12,11 +12,13 @@ class BookList extends PureComponent {
   }
 
   render() {
-    const {books, error, loading} = this.props;
+    const { books, error, loading } = this.props;
     if (error) {
       return (
         <p>
-        Error: {error}
+        Error:
+          {' '}
+          {error}
         </p>
       );
     }
@@ -41,10 +43,10 @@ const actionCreators = new ActionCreators(bookActions);
 const mapStateToProps = (state) => ({
   books: selectBooks(state),
   loading: selectStatus(state),
-  error: selectError(state)
+  error: selectError(state),
 });
 const mapDispatchToProps = (dispatch) => ({
-  getAll: () => { dispatch(actionCreators.getAll()); }
+  getAll: () => { dispatch(actionCreators.getAll()); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);
