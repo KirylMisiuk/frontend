@@ -1,48 +1,51 @@
-.dashboard-container {
+.box{
   display: flex;
-  flex-wrap: wrap;
-  width: 1400px;
-  margin: 20px auto 0;
+  justify-content: space-between;
+  flex-wrap: wrap
 }
-.dashboard-item {
-  margin: 15px;
-  border-radius: 10px;
-  box-shadow: 10px 10px 5px 0px rgba(163,163,163,1);
-  height: 293px;
-  position: relative;
+.material-icons{
+  font-size: 2.4em;
+  cursor: pointer;
 }
-.dashboard-item-image {
-  border-radius: 10px 10px 10px 10px;
-  opacity:1;
+.card{
+  width: 300px;
 }
-
-.dashboard-item-image-hover{
-  border-radius: 10px 10px 10px 10px;
-  opacity:.50;
-}
-
-
-.icon-container {
-  margin-right: 15px;
-}
-.info-icon {
-  color: #800c19;
-  margin-right: 15px;
-}
-.trash-icon {
-  color: #241a80;
-  margin-right: 15px;
-}
-.edit-icon {
-  color: #188022;
-  margin-right: 15px;
-}
-
-.additional-info {
-  font-size: 20px;
-  position: absolute;
-  top: 60%;
-  left: 25%;
+.card .card-image .card-title{
   color: black;
-  display: flex;
+  font-weight: 400
+}
+
+.title{
+  overflow: hidden;
+  height: 100px;
+  width: 250px;
+  line-height: 25px;
+}
+
+.title:before {
+  content: "";
+  float: left;
+  width: 5px;
+  height: 100px;
+}
+
+.title > *:first-child {
+  float: right;
+  width: 100%;
+  margin-left: -5px;
+}
+
+.title:after {
+  content: "\02026";
+  box-sizing: content-box;
+  float: right;
+  position: relative;
+  top: -25px;
+  left: 100%;
+  width: 3em;
+  margin-left: -3em;
+  padding-right: 5px;
+  text-align: right;
+  background-size: 100% 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
 }

@@ -1,5 +1,7 @@
-import {BookLoad, BooksLoad, FailLoadBook,
-  FailLoadBooks, LoadBooksSuccess, LoadBookSuccess} from "./BookActionsTypes";
+import {
+  BookLoad, BooksLoad, DeleteBook, DeleteBookSuccess, FailDeleteBook, FailLoadBook,
+  FailLoadBooks, LoadBooksSuccess, LoadBookSuccess,
+} from './BookActionsTypes';
 
 
 class BookActions {
@@ -12,37 +14,57 @@ class BookActions {
   loadBooksFail(bool) {
     return {
       type: FailLoadBooks,
-      hasErrored: bool
+      hasErrored: bool,
     };
   }
 
   loadBooksSuccess(books) {
     return {
       type: LoadBooksSuccess,
-      books
+      books,
     };
   }
 
   loadingBook(bool) {
     return {
       type: BookLoad,
-      isLoading: bool
+      isLoading: bool,
     };
   }
 
   loadBookFail(bool) {
     return {
       type: FailLoadBook,
-      hasErrored: bool
+      hasErrored: bool,
     };
   }
 
   loadBookSuccess(book) {
     return {
       type: LoadBookSuccess,
-      book
+      book,
+    };
+  }
+
+  deleteBook() {
+    return {
+      type: DeleteBook,
+    };
+  }
+
+  deleteBookSuccess(book) {
+    return {
+      type: DeleteBookSuccess,
+      book,
+    };
+  }
+
+  deleteBookFail(bool) {
+    return {
+      type: FailDeleteBook,
+      hasErrored: bool,
     };
   }
 }
 
-export default BookActions
+export default BookActions;

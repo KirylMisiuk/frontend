@@ -27,10 +27,13 @@ class BookList extends PureComponent {
     }
 
     return (
-      <div className="dashboard-container">
-        {books.map((book) => (
-          <BookListItem book={book} key={book._id} />
-        ))}
+      <div className="container">
+        <h3 className="center">Our Books</h3>
+        <div className="box">
+          {books.map((book) => (
+            <BookListItem book={book} key={book._id} />
+          ))}
+        </div>
       </div>
     );
   }
