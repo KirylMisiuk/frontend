@@ -42,8 +42,11 @@ class BookListItem extends PureComponent {
               <Rating name="size-medium" value={null} />
               <p><b>Price: {book.price}$</b></p>
           </div>
-
-
+            {isMouseOver && (
+            <div onClick={this.handleDeleteButton} className='book-delete'>
+                <i className='material-icons'>delete</i>
+            </div>
+                  )}
         </div>
 
     );

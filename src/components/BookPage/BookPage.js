@@ -52,6 +52,9 @@ class BookPage extends PureComponent {
                 Year:
               {book.year}
             </li>
+            <li>
+              {book.title}
+            </li>
           </ul>
         </div>
       </div>
