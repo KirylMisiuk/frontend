@@ -49,10 +49,14 @@
   background-size: 100% 100%;
   background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
 }
-.book-delete {
-  grid-area: delete;
-  position: absolute;
-  font-size: 10px;
+.icons{
   right: 0px;
   bottom: 0px;
+  position: absolute;
+  display: inline;
+}
+.book-delete {
+  grid-area: delete;
+  font-size: 10px;
+  display: inline-block;
 }

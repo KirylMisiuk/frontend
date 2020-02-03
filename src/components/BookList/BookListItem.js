@@ -18,7 +18,6 @@ class BookListItem extends PureComponent {
     handleMouseLeave = () => this.setState({isMouseOver: false});
     handleDeleteButton = () => {
     const {book} = this.props;
-    console.log(book._id)
      this.props.delete(book._id)
   };
 
@@ -43,9 +42,14 @@ class BookListItem extends PureComponent {
               <p><b>Price: {book.price}$</b></p>
           </div>
             {isMouseOver && (
-            <div onClick={this.handleDeleteButton} className='book-delete'>
-                <i className='material-icons'>delete</i>
-            </div>
+                <div className="icons">
+                    <div onClick={this.handleDeleteButton} className='book-delete'>
+                        <i className='material-icons'>edit</i>
+                    </div>
+                    <div onClick={this.handleDeleteButton} className='book-delete'>
+                        <i className='material-icons'>delete</i>
+                    </div>
+                </div>
                   )}
         </div>
 
@@ -65,5 +69,5 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionCreators.delete(id));
     }
   };
-}
+};
 export default connect(mapStateToProps, mapDispatchToProps)(BookListItem);
