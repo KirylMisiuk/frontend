@@ -43,9 +43,11 @@ class BookListItem extends PureComponent {
           </div>
             {isMouseOver && (
                 <div className="icons">
-                    <div onClick={this.handleDeleteButton} className='book-delete'>
+                    <Link to={`/edit/book/${book._id}`}>
+                    <div  className='book-delete'>
                         <i className='material-icons'>edit</i>
                     </div>
+                     </Link>
                     <div onClick={this.handleDeleteButton} className='book-delete'>
                         <i className='material-icons'>delete</i>
                     </div>

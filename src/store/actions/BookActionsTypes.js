@@ -9,3 +9,7 @@ export const LoadBookSuccess = 'LOAD_BOOK_SUCCESS';
 export const DeleteBook = 'DELETE_BOOK';
 export const FailDeleteBook = 'DELETE_BOOK_FAIL';
 export const DeleteBookSuccess = 'DELETE_BOOK_SUCCESS';
+
+export const UpdateBook = 'UPDATE_BOOK';
+export const UpdateBookSuccess = 'UPDATE_BOOK_SUCCESS';
+export const UpdateBookFail = 'UPDATE_BOOK_FAIL';

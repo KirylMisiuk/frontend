@@ -1,6 +1,6 @@
 import {
   BookLoad, BooksLoad, DeleteBook, DeleteBookSuccess, FailDeleteBook, FailLoadBook,
-  FailLoadBooks, LoadBooksSuccess, LoadBookSuccess,
+  FailLoadBooks, LoadBooksSuccess, LoadBookSuccess, UpdateBook, UpdateBookFail, UpdateBookSuccess,
 } from './BookActionsTypes';
 
 
@@ -65,6 +65,28 @@ class BookActions {
       hasErrored: bool,
     };
   }
+
+  updateBook() {
+    return {
+      type: UpdateBook,
+    };
+  }
+
+  updateBookSuccess(book) {
+    return {
+      type: UpdateBookSuccess,
+      book,
+    };
+  }
+
+  updateBookFail(bool) {
+    return {
+      type: UpdateBookFail,
+      hasErrored: bool,
+    };
+  }
+
+
 }
 
 export default BookActions;

@@ -51,5 +51,28 @@ class BookEffects {
         .catch((err) => dispatch(this.bookActions.deleteBookFail(err)));
     };
   }
+
+  update(_id, data) {
+    return (dispatch) => {
+      dispatch(this.bookActions.updateBook());
+      fetch(`http://localhost:2000/books/${_id}`, {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw Error(res.statusText);
+          }
+          return res;
+        })
+        .then((res) => res.json())
+        .then(({ data }) => dispatch(this.bookActions.updateBookSuccess(data)))
+        .catch((err) => dispatch(this.bookActions.updateBookFail(err)));
+    };
+  }
 }
 export default BookEffects;

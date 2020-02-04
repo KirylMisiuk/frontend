@@ -1,3 +1,4 @@
+import { reducer as formReducer } from 'redux-form';
 import {
   BOOK_LOAD,
   BOOKS_LOAD,
@@ -8,10 +9,9 @@ import {
   LOAD_BOOKS_SUCCESS,
   DELETE_BOOK,
   DELETE_BOOK_FAIL,
-  DELETE_BOOK_SUCCESS,
+  DELETE_BOOK_SUCCESS, UPDATE_BOOK, UPDATE_BOOK_SUCCESS, UPDATE_BOOK_FAIL,
 
 } from './BookReducerTypes';
-
 
 const loadReducer = (state = initalState, action) => {
   console.log(action.type);
@@ -58,6 +58,22 @@ const loadReducer = (state = initalState, action) => {
         error: action.payload,
       };
     }
+    case UPDATE_BOOK: {
+      return {
+        ...state,
+      };
+    }
+    case UPDATE_BOOK_SUCCESS: {
+      return {
+        ...state,
+      };
+    }
+    case UPDATE_BOOK_FAIL: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
     default:
       return state;
   }
@@ -66,4 +82,5 @@ const loadReducer = (state = initalState, action) => {
 
 export const reducers = {
   books: loadReducer,
+  form: formReducer,
 };

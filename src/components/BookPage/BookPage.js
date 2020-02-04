@@ -19,7 +19,6 @@ class BookPage extends PureComponent {
 
   render() {
     const {error, loading, book} = this.props;
-    console.log(book);
     if (error) {
       return (
         <p>
