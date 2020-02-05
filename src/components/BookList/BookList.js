@@ -5,6 +5,7 @@ import './styles.css';
 import BookActions from '../../store/actions/BookActions';
 import ActionCreators from '../../store/effects/BookEffects';
 import { selectBooks, selectStatus, selectError } from '../../store/selectors/BookSelectors';
+import BookAddItem from './BookAddItem';
 
 class BookList extends PureComponent {
   componentDidMount() {
@@ -23,7 +24,11 @@ class BookList extends PureComponent {
       );
     }
     if (loading) {
-      return <p>Loading…</p>;
+      return (
+        <div className="progress">
+          <div className="indeterminate" />
+        </div>
+      );
     }
 
     return (
@@ -33,6 +38,7 @@ class BookList extends PureComponent {
           {books.map((book) => (
             <BookListItem book={book} key={book._id} />
           ))}
+          <BookAddItem />
         </div>
       </div>
     );

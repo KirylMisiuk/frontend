@@ -1,8 +1,7 @@
 export const initalState = {
   books: [],
   loading: false,
-  book: {},
-  formData: {},
+  book: {}
 };
 
 export const BOOKS_LOAD = 'BOOKS_LOAD';
@@ -20,3 +19,7 @@ export const FAIL_LOAD_BOOK = 'FAIL_LOAD_BOOKS';
 export const UPDATE_BOOK = 'UPDATE_BOOK';
 export const UPDATE_BOOK_SUCCESS = 'UPDATE_BOOK_SUCCESS';
 export const UPDATE_BOOK_FAIL = 'UPDATE_BOOK_FAIL';
+
+export const CREATE_BOOK = 'CREATE_BOOK';
+export const CREATE_BOOK_SUCCESS = 'CREATE_BOOK_SUCCESS';
+export const CREATE_BOOK_FAIL = 'CREATE_BOOK_FAIL';

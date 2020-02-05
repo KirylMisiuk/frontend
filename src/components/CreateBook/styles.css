@@ -1,0 +1,14 @@
+.custom-input-container,
+.custom-select-container,
+.custom-field-array-container {
+    position: relative;
+    margin: 0 0 25px 0;
+}
+.field-array-item {
+    display: flex;
+    justify-content: space-around;
+}
+
+.field-array-item button {
+    align-self: start;
+}

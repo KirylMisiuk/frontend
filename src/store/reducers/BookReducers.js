@@ -9,7 +9,13 @@ import {
   LOAD_BOOKS_SUCCESS,
   DELETE_BOOK,
   DELETE_BOOK_FAIL,
-  DELETE_BOOK_SUCCESS, UPDATE_BOOK, UPDATE_BOOK_SUCCESS, UPDATE_BOOK_FAIL,
+  DELETE_BOOK_SUCCESS,
+  UPDATE_BOOK,
+  UPDATE_BOOK_SUCCESS,
+  UPDATE_BOOK_FAIL,
+  CREATE_BOOK_SUCCESS,
+  CREATE_BOOK,
+  CREATE_BOOK_FAIL,
 
 } from './BookReducerTypes';
 
@@ -66,9 +72,27 @@ const loadReducer = (state = initalState, action) => {
     case UPDATE_BOOK_SUCCESS: {
       return {
         ...state,
+        book: { ...state.book, ...action.book },
       };
     }
     case UPDATE_BOOK_FAIL: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+    case CREATE_BOOK: {
+      return {
+        ...state,
+      };
+    }
+    case CREATE_BOOK_SUCCESS: {
+      return {
+        ...state,
+        book: action.book,
+      };
+    }
+    case CREATE_BOOK_FAIL: {
       return {
         ...state,
         error: action.payload,

@@ -13,3 +13,7 @@ export const DeleteBookSuccess = 'DELETE_BOOK_SUCCESS';
 export const UpdateBook = 'UPDATE_BOOK';
 export const UpdateBookSuccess = 'UPDATE_BOOK_SUCCESS';
 export const UpdateBookFail = 'UPDATE_BOOK_FAIL';
+
+export const CreateBook = 'CREATE_BOOK';
+export const CreateBookSuccess = 'CREATE_BOOK_SUCCESS';
+export const CreateBookFail = 'CREATE_BOOK_FAIL';

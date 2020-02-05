@@ -1,7 +1,7 @@
 .box{
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap
+  flex-wrap: wrap;
 }
 .material-icons{
   font-size: 2.4em;
@@ -59,4 +59,15 @@
   grid-area: delete;
   font-size: 10px;
   display: inline-block;
+}
+.add-image{
+  position:absolute;
+  font-size: 6rem ;
+  top:35%;
+  left:35%;
+  color: #ff1a23;
+}
+.add-div{
+  height: 350px;
+  width: 250px;
 }
