@@ -4,11 +4,11 @@ import {
   BrowserRouter, Route, Switch, Redirect,
 } from 'react-router-dom';
 
-import BookList from '../BookList';
-import BookPage from '../BookPage';
+import BookList from '../BookComponents/BookList';
+import BookPage from '../BookComponents/BookPage';
 import Navbar from '../Navbar';
-import EditBook from '../EditBook';
-import CreateBook from '../CreateBook';
+import EditBook from '../BookComponents/EditBook';
+import CreateBook from '../BookComponents/CreateBook';
 
 
 class App extends PureComponent {

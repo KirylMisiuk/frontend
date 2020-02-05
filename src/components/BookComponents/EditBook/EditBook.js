@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 
-import BookActions from '../../store/actions/BookActions';
-import { selectBook, selectStatus, selectError } from '../../store/selectors/BookSelectors';
-import ActionCreators from '../../store/effects/BookEffects';
+import BookActions from '../../../store/actions/BookActions';
+import { selectBook, selectStatus, selectError } from '../../../store/selectors/BookSelectors';
+import ActionCreators from '../../../store/effects/BookEffects';
 import InputField from './InputField';
 import { date, required } from './validation';
 

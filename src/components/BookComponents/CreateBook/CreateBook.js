@@ -3,18 +3,17 @@ import './styles.css';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Field, FieldArray, reduxForm } from 'redux-form';
-import BookActions from '../../store/actions/BookActions';
-import { selectError } from '../../store/selectors/BookSelectors';
-import ActionCreators from '../../store/effects/BookEffects';
+import BookActions from '../../../store/actions/BookActions';
+import { selectError } from '../../../store/selectors/BookSelectors';
+import ActionCreators from '../../../store/effects/BookEffects';
 import InputField from './InputField';
 import { date, required } from './validation';
-import {discounts} from "./IdField";
+import IdField from './IdField';
 
 class CreateBook extends PureComponent {
   onSubmit(e) {
     this.props.create(e);
   }
-
   render() {
     const { handleSubmit, invalid } = this.props;
     return (
@@ -66,7 +65,7 @@ class CreateBook extends PureComponent {
             validate={[required]}
           />
         </div>
-          <FieldArray name="libraryIds" component={discounts} />
+        <FieldArray name="libraryIds" component={IdField} />
         <button className="btn waves-effect waves-light red accent-1" disabled={invalid} type="submit" name="action">
                     Submit
           <i className="material-icons right">send</i>

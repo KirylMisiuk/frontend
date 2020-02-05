@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import {Link} from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
-import BookActions from '../../store/actions/BookActions'
-import ActionCreators from "../../store/effects/BookEffects";
-import {selectBooks, selectError} from "../../store/selectors/BookSelectors";
+import BookActions from '../../../store/actions/BookActions'
+import ActionCreators from "../../../store/effects/BookEffects";
+import {selectBooks, selectError} from "../../../store/selectors/BookSelectors";
 import {connect} from "react-redux";
 class BookListItem extends PureComponent {
   static propTypes = {

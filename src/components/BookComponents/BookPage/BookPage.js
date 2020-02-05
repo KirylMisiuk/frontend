@@ -2,9 +2,9 @@ import React, {PureComponent} from 'react';
 import './styles.css';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import BookActions from '../../store/actions/BookActions';
-import {selectBook, selectStatus, selectError} from '../../store/selectors/BookSelectors';
-import ActionCreators from '../../store/effects/BookEffects';
+import BookActions from '../../../store/actions/BookActions';
+import {selectBook, selectStatus, selectError} from '../../../store/selectors/BookSelectors';
+import ActionCreators from '../../../store/effects/BookEffects';
 
 class BookPage extends PureComponent {
   static propTypes = {

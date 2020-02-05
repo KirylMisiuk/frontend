@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import BookListItem from './BookListItem';
 import './styles.css';
-import BookActions from '../../store/actions/BookActions';
-import ActionCreators from '../../store/effects/BookEffects';
-import { selectBooks, selectStatus, selectError } from '../../store/selectors/BookSelectors';
+import BookActions from '../../../store/actions/BookActions';
+import ActionCreators from '../../../store/effects/BookEffects';
+import { selectBooks, selectStatus, selectError } from '../../../store/selectors/BookSelectors';
 import BookAddItem from './BookAddItem';
 
 class BookList extends PureComponent {
