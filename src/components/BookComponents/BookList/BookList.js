@@ -7,13 +7,16 @@ import ActionCreators from '../../../store/effects/BookEffects';
 import { selectBooks, selectStatus, selectError } from '../../../store/selectors/BookSelectors';
 import BookAddItem from './BookAddItem';
 
+
 class BookList extends PureComponent {
   componentDidMount() {
     this.props.getAll();
   }
 
   render() {
-    const { books, error, loading } = this.props;
+    const {
+      books, error, loading,
+    } = this.props;
     if (error) {
       return (
         <p>

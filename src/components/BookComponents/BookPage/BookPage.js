@@ -18,18 +18,24 @@ class BookPage extends PureComponent {
   }
 
   render() {
-    const {error, loading, book} = this.props;
+    const {
+      book, error, loading,
+    } = this.props;
     if (error) {
       return (
-        <p>
+          <p>
             Error:
-          {' '}
-          {error}
-        </p>
+            {' '}
+            {error}
+          </p>
       );
     }
     if (loading) {
-      return <p>Loading…</p>;
+      return (
+          <div className="progress">
+            <div className="indeterminate" />
+          </div>
+      );
     }
     return (
       <div className="book-container">

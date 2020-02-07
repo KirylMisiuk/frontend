@@ -10,7 +10,7 @@ import {
   FailLoadBook,
   FailLoadBooks,
   LoadBooksSuccess,
-  LoadBookSuccess,
+  LoadBookSuccess, SearchBook, SearchBookFail, SearchBookSuccess,
   UpdateBook,
   UpdateBookFail,
   UpdateBookSuccess,
@@ -24,38 +24,37 @@ class BookActions {
     };
   }
 
-  loadBooksFail(bool) {
+  loadBooksFail(error) {
     return {
       type: FailLoadBooks,
-      hasErrored: bool,
+      ...error,
     };
   }
 
   loadBooksSuccess(books) {
     return {
       type: LoadBooksSuccess,
-      books,
+      ...books,
     };
   }
 
-  loadingBook(bool) {
+  loadingBook() {
     return {
       type: BookLoad,
-      isLoading: bool,
     };
   }
 
-  loadBookFail(bool) {
+  loadBookFail(error) {
     return {
       type: FailLoadBook,
-      hasErrored: bool,
+      ...error,
     };
   }
 
   loadBookSuccess(book) {
     return {
       type: LoadBookSuccess,
-      book,
+      ...book,
     };
   }
 
@@ -68,14 +67,14 @@ class BookActions {
   deleteBookSuccess(book) {
     return {
       type: DeleteBookSuccess,
-      book,
+      ...book,
     };
   }
 
-  deleteBookFail(bool) {
+  deleteBookFail(error) {
     return {
       type: FailDeleteBook,
-      hasErrored: bool,
+      ...error,
     };
   }
 
@@ -86,18 +85,20 @@ class BookActions {
   }
 
   updateBookSuccess(book) {
+    console.log({...book})
     return {
       type: UpdateBookSuccess,
-      book,
+      ...book,
     };
   }
 
-  updateBookFail(bool) {
+  updateBookFail(error) {
     return {
       type: UpdateBookFail,
-      hasErrored: bool,
+      ...error,
     };
   }
+
   createBook() {
     return {
       type: CreateBook,
@@ -107,17 +108,37 @@ class BookActions {
   createBookSuccess(book) {
     return {
       type: CreateBookSuccess,
-      book,
+      ...book,
     };
   }
 
-  createBookFail(bool) {
+  createBookFail(error) {
     return {
       type: CreateBookFail,
-      hasErrored: bool,
+      ...error,
     };
   }
 
+  searchBook(search) {
+    return {
+      type: SearchBook,
+      search,
+    };
+  }
+
+  searchBookSuccess(books) {
+    return {
+      type: SearchBookSuccess,
+      ...books,
+    };
+  }
+
+  searchBookFail(error) {
+    return {
+      type: SearchBookFail,
+      ...error,
+    };
+  }
 }
 
 export default BookActions;

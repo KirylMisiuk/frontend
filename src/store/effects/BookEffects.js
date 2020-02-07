@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 class BookEffects {
   constructor(bookActions) {
@@ -7,95 +8,90 @@ class BookEffects {
   getAll() {
     return (dispatch) => {
       dispatch(this.bookActions.loadingBooks());
-      fetch('http://localhost:2000/books')
-        .then((res) => {
-          if (!res.ok) {
-            throw Error(res.statusText);
-          }
-          return res;
-        })
-        .then((res) => res.json())
+      axios('http://localhost:2000/books')
         .then(({ data }) => dispatch(this.bookActions.loadBooksSuccess(data)))
-        .catch(() => dispatch(this.bookActions.loadBooksFail(true)));
+        .catch(({ response, message }) => {
+          if (!response) {
+            dispatch(this.bookActions.loadBooksFail({ message }));
+          } else {
+            dispatch(this.bookActions.loadBooksFail(response.data));
+          }
+        });
     };
   }
 
   getOne(_id) {
     return (dispatch) => {
       dispatch(this.bookActions.loadingBook(true));
-      fetch(`http://localhost:2000/books/${_id}`)
-        .then((res) => {
-          if (!res.ok) {
-            throw Error(res.statusText);
-          }
-          return res;
-        })
-        .then((res) => res.json())
+      axios(`http://localhost:2000/books/${_id}`)
         .then(({ data }) => dispatch(this.bookActions.loadBookSuccess(data)))
-        .catch((err) => dispatch(this.bookActions.loadBookFail(err)));
+        .catch(({ response, message }) => {
+          if (!response) {
+            dispatch(this.bookActions.loadBookFail({ message }));
+          } else {
+            dispatch(this.bookActions.loadBookFail(response.data));
+          }
+        });
     };
   }
 
   delete(_id) {
     return (dispatch) => {
       dispatch(this.bookActions.deleteBook());
-      fetch(`http://localhost:2000/books?_id=${_id}`, { method: 'DELETE' })
-        .then((res) => {
-          if (!res.ok) {
-            throw Error(res.statusText);
-          }
-          return res;
-        })
-        .then((res) => res.json())
+      axios.delete(`http://localhost:2000/books?_id=${_id}`)
         .then(({ data }) => dispatch(this.bookActions.deleteBookSuccess(data)))
-        .catch((err) => dispatch(this.bookActions.deleteBookFail(err)));
+        .catch(({ response, message }) => {
+          if (!response) {
+            dispatch(this.bookActions.deleteBookFail({ message }));
+          } else {
+            dispatch(this.bookActions.deleteBookFail(response.data));
+          }
+        });
     };
   }
 
   update(_id, book) {
     return (dispatch) => {
       dispatch(this.bookActions.updateBook());
-      fetch(`http://localhost:2000/books/${_id}`, {
-        method: 'PUT',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(book),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            throw Error(res.statusText);
-          }
-          return res;
-        })
-        .then((res) => res.json())
+      axios.put(`http://localhost:2000/books/${_id}`, book)
         .then(({ data }) => dispatch(this.bookActions.updateBookSuccess(data)))
-        .catch((err) => dispatch(this.bookActions.updateBookFail(err)));
+        .catch(({ response, message }) => {
+          if (!response) {
+            dispatch(this.bookActions.updateBookFail({ message }));
+          } else {
+            dispatch(this.bookActions.updateBookFail(response.data));
+          }
+        });
     };
   }
 
   create(book) {
-      console.log(book);
     return (dispatch) => {
       dispatch(this.bookActions.createBook());
-      fetch('http://localhost:2000/books', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(book),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            throw Error(res.statusText);
-          }
-          return res;
-        })
-        .then((res) => res.json())
+      axios.post('http://localhost:2000/books', book)
         .then(({ data }) => dispatch(this.bookActions.createBookSuccess(data)))
-        .catch((err) => dispatch(this.bookActions.createBookFail(err)));
+        .catch(({ response, message }) => {
+          if (!response) {
+            dispatch(this.bookActions.createBookFail({ message }));
+          } else {
+            dispatch(this.bookActions.createBookFail(response.data));
+          }
+        });
+    };
+  }
+
+  search(param) {
+    return (dispatch) => {
+      dispatch(this.bookActions.searchBook(param));
+      axios(`http://localhost:2000/books?search=${param}`)
+        .then(({ data }) => dispatch(this.bookActions.searchBookSuccess(data)))
+        .catch(({ response, message }) => {
+          if (!response) {
+            dispatch(this.bookActions.searchBookFail({ message }));
+          } else {
+            dispatch(this.bookActions.searchBookFail(response.data));
+          }
+        });
     };
   }
 }

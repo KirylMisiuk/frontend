@@ -10,10 +10,12 @@ import InputField from './InputField';
 import { date, required } from './validation';
 import IdField from './IdField';
 
+
 class CreateBook extends PureComponent {
   onSubmit(e) {
     this.props.create(e);
   }
+
   render() {
     const { handleSubmit, invalid } = this.props;
     return (
@@ -69,6 +71,10 @@ class CreateBook extends PureComponent {
         <button className="btn waves-effect waves-light red accent-1" disabled={invalid} type="submit" name="action">
                     Submit
           <i className="material-icons right">send</i>
+        </button>
+        <button className="btn waves-effect waves-light red accent-1" type="button" onClick={this.onCancel} name="action">
+            Cancel
+          <i className="material-icons right">cancel</i>
         </button>
       </form>
     );

@@ -46,7 +46,6 @@ class EditBook extends PureComponent {
           <Field
             name="_id"
             label="id"
-            type="text"
             component={InputField}
             validate={required}
           />
@@ -77,6 +76,8 @@ class EditBook extends PureComponent {
             component={InputField}
             validate={required}
           />
+        </div>
+        <div className="row">
           <Field
             name="title"
             label="title"
@@ -84,14 +85,18 @@ class EditBook extends PureComponent {
             component={InputField}
             validate={required}
           />
+        </div>
+        <div className="row">
           <Field
             name="year"
-            label="YYYY"
+            label="Year"
             type="number"
             component={InputField}
             maxlength="4"
             validate={[required, date]}
           />
+        </div>
+        <div className="row">
           <Field
             name="price"
             label="price"
@@ -119,9 +124,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch, props) => {
   const { match: { params } } = props;
   return {
-    // eslint-disable-next-line no-underscore-dangle
     getOne: () => { dispatch(actionCreators.getOne(params._id)); },
-    // eslint-disable-next-line no-underscore-dangle
     update: (data) => {
       dispatch(actionCreators.update(params._id, data));
     },
