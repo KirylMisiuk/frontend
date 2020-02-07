@@ -1,3 +1,9 @@
+.input{
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    left: 30%;
+}
 .custom-input-container,
 .custom-select-container,
 .custom-field-array-container {
