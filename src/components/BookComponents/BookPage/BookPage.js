@@ -10,7 +10,8 @@ class BookPage extends PureComponent {
   static propTypes = {
     book: PropTypes.object.isRequired,
     error: PropTypes.string.isRequired,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    getOne: PropTypes.func.isRequired
   };
 
   componentDidMount() {

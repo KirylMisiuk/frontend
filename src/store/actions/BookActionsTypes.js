@@ -22,3 +22,7 @@ export const CreateBookFail = 'CREATE_BOOK_FAIL';
 export const SearchBook = 'SEARCH_BOOK';
 export const SearchBookSuccess = 'SEARCH_BOOK_SUCCESS';
 export const SearchBookFail = 'SEARCH_BOOK_FAIL';
+
+export const CurrentPage = 'CURRENT_PAGE';
+export const BookCount = 'BOOK_COUNT';
+export const BookCountFail = 'BOOK_COUNT_FAIL';

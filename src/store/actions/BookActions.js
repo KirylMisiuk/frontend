@@ -14,6 +14,7 @@ import {
   UpdateBook,
   UpdateBookFail,
   UpdateBookSuccess,
+  CurrentPage, BookCountFail, BookCount,
 } from './BookActionsTypes';
 
 
@@ -85,7 +86,6 @@ class BookActions {
   }
 
   updateBookSuccess(book) {
-    console.log({...book})
     return {
       type: UpdateBookSuccess,
       ...book,
@@ -136,6 +136,27 @@ class BookActions {
   searchBookFail(error) {
     return {
       type: SearchBookFail,
+      ...error,
+    };
+  }
+
+  getCurrentPage(currentPage) {
+    return {
+      type: CurrentPage,
+      currentPage,
+    };
+  }
+
+  getBookCount({ data }) {
+    return {
+      type: BookCount,
+      bookCount: data.length,
+    };
+  }
+
+  getBookCountFail(error) {
+    return {
+      type: BookCountFail,
       ...error,
     };
   }

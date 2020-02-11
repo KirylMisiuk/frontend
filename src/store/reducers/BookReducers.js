@@ -15,7 +15,12 @@ import {
   UPDATE_BOOK_FAIL,
   CREATE_BOOK_SUCCESS,
   CREATE_BOOK,
-  CREATE_BOOK_FAIL, SEARCH_BOOK_FAIL, SEARCH_BOOK_SUCCESS, SEARCH_BOOK,
+  CREATE_BOOK_FAIL,
+  SEARCH_BOOK_FAIL,
+  SEARCH_BOOK_SUCCESS,
+  SEARCH_BOOK,
+  BOOK_COUNT,
+  CURRENT_PAGE,
 
 } from './BookReducerTypes';
 
@@ -141,6 +146,18 @@ const loadReducer = (state = initalState, action) => {
         ...state,
         status: action.status,
         error: action.message,
+      };
+    }
+    case CURRENT_PAGE: {
+      return {
+        ...state,
+        currentPage: action.currentPage,
+      };
+    }
+    case BOOK_COUNT: {
+      return {
+        ...state,
+        bookCount: action.bookCount,
       };
     }
     default:

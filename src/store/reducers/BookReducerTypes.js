@@ -5,6 +5,9 @@ export const initalState = {
   search: '',
   error: false,
   status: false,
+  pageSize: 5,
+  currentPage: 1,
+  bookCount: 0,
 };
 
 export const BOOKS_LOAD = 'BOOKS_LOAD';
@@ -30,3 +33,6 @@ export const CREATE_BOOK_FAIL = 'CREATE_BOOK_FAIL';
 export const SEARCH_BOOK = 'SEARCH_BOOK';
 export const SEARCH_BOOK_SUCCESS = 'SEARCH_BOOK_SUCCESS';
 export const SEARCH_BOOK_FAIL = 'SEARCH_BOOK_FAIL';
+
+export const CURRENT_PAGE = 'CURRENT_PAGE';
+export const BOOK_COUNT = 'BOOK_COUNT';

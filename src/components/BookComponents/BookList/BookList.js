@@ -4,13 +4,38 @@ import BookListItem from './BookListItem';
 import './styles.css';
 import BookActions from '../../../store/actions/BookActions';
 import ActionCreators from '../../../store/effects/BookEffects';
-import { selectBooks, selectStatus, selectError } from '../../../store/selectors/BookSelectors';
+import {
+  selectBooks,
+  selectStatus,
+  selectError,
+  selectPageSize, selectCurrentPage,
+} from '../../../store/selectors/BookSelectors';
 import BookAddItem from './BookAddItem';
+import Pagination from '../../Pagination';
+import PropTypes from "prop-types";
 
 
 class BookList extends PureComponent {
+  static propTypes = {
+    currentPage:PropTypes.number.isRequired,
+    pageSize:PropTypes.number.isRequired,
+    getCount: PropTypes.func.isRequired,
+    error: PropTypes.string.isRequired,
+    getPaginatedBooks: PropTypes.func.isRequired,
+    books: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired
+  };
   componentDidMount() {
-    this.props.getAll();
+    const { currentPage, pageSize } = this.props;
+    this.props.getCount();
+    this.props.getPaginatedBooks(currentPage, pageSize);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { currentPage, pageSize } = this.props;
+    if (currentPage !== prevProps.currentPage) {
+      this.props.getPaginatedBooks(currentPage, pageSize);
+    }
   }
 
   render() {
@@ -36,7 +61,10 @@ class BookList extends PureComponent {
 
     return (
       <div className="container">
-        <h3 className="center">Our Books</h3>
+        <div className="center">
+          <h3>Our Books</h3>
+          <Pagination />
+        </div>
         <div className="box">
           {books.map((book) => (
             <BookListItem book={book} key={book._id} />
@@ -56,9 +84,12 @@ const mapStateToProps = (state) => ({
   books: selectBooks(state),
   loading: selectStatus(state),
   error: selectError(state),
+  currentPage: selectCurrentPage(state),
+  pageSize: selectPageSize(state),
 });
 const mapDispatchToProps = (dispatch) => ({
-  getAll: () => { dispatch(actionCreators.getAll()); },
+  getPaginatedBooks: (count, size) => { dispatch(actionCreators.getPaginatedBooks(count, size)); },
+  getCount: () => { dispatch(actionCreators.getBookCount()); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);

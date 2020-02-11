@@ -5,11 +5,29 @@ class BookEffects {
     this.bookActions = bookActions;
   }
 
-  getAll() {
+  getBookCount(search = '') {
+    return (dispatch) => {
+      axios(`http://localhost:2000/books?search=${search}`)
+        .then(({ data }) => {
+          dispatch(this.bookActions.getBookCount(data));
+        })
+        .catch(({ response, message }) => {
+          if (!response) {
+            dispatch(this.bookActions.getBookCountFail({ message }));
+          } else {
+            dispatch(this.bookActions.getBookCountFail(response.data));
+          }
+        });
+    };
+  }
+
+  getPaginatedBooks(bookCount, bookSize) {
     return (dispatch) => {
       dispatch(this.bookActions.loadingBooks());
-      axios('http://localhost:2000/books')
-        .then(({ data }) => dispatch(this.bookActions.loadBooksSuccess(data)))
+      axios(`http://localhost:2000/books?count=${bookCount}&size=${bookSize}`)
+        .then(({ data }) => {
+          dispatch(this.bookActions.loadBooksSuccess(data));
+        })
         .catch(({ response, message }) => {
           if (!response) {
             dispatch(this.bookActions.loadBooksFail({ message }));
@@ -80,11 +98,13 @@ class BookEffects {
     };
   }
 
-  search(param) {
+  search(search, currentPage, bookSize) {
     return (dispatch) => {
-      dispatch(this.bookActions.searchBook(param));
-      axios(`http://localhost:2000/books?search=${param}`)
-        .then(({ data }) => dispatch(this.bookActions.searchBookSuccess(data)))
+      dispatch(this.bookActions.searchBook(search));
+      axios(`http://localhost:2000/books?search=${search}&count=${currentPage}&size=${bookSize}`)
+        .then(({ data }) => {
+          dispatch(this.bookActions.searchBookSuccess(data));
+        })
         .catch(({ response, message }) => {
           if (!response) {
             dispatch(this.bookActions.searchBookFail({ message }));

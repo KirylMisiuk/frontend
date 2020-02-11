@@ -10,13 +10,27 @@ import ActionCreators from '../../../store/effects/BookEffects';
 import InputField from './InputField';
 import { date, required } from './validation';
 import IdField from './IdField';
+import PropTypes from "prop-types";
 
 class EditBook extends PureComponent {
+    static propTypes = {
+        book: PropTypes.object.isRequired,
+        error: PropTypes.string.isRequired,
+        loading: PropTypes.bool.isRequired,
+        getOne: PropTypes.func.isRequired,
+        update: PropTypes.func.isRequired,
+        create: PropTypes.func.isRequired,
+        onSubmit: PropTypes.func.isRequired
+    };
   componentDidMount() {
     this.props.getOne();
   }
 
-  onSubmit(e) {
+  cancelHandler() {
+    this.props.history.goBack();
+  }
+
+  onSubmit = (e)=> {
     const { match: { params } } = this.props;
     if (params._id) {
       this.props.update(e);
@@ -33,7 +47,7 @@ class EditBook extends PureComponent {
     if (error) {
       return (
         <p>
-                    Error:
+        Error:
           {' '}
           {error}
         </p>
@@ -47,7 +61,7 @@ class EditBook extends PureComponent {
       );
     }
     return (
-      <form className="col s12 input" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+      <form className="col s12 input" onSubmit={handleSubmit(this.onSubmit)}>
         <div className="row">
           <Field
             name="name"
@@ -104,6 +118,10 @@ class EditBook extends PureComponent {
           />
         </div>
         <FieldArray name="libraryIds" component={IdField} />
+        <button className="btn waves-effect waves-light red accent-1" type="button" onClick={this.cancelHandler.bind(this)} name="action">
+              Cancel
+          <i className="material-icons right">cancel</i>
+        </button>
         <button className="btn waves-effect waves-light red accent-1" disabled={invalid} type="submit" name="action">
                     Submit
           <i className="material-icons right">send</i>

@@ -5,11 +5,17 @@ import {Link} from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
 import BookActions from '../../../store/actions/BookActions'
 import ActionCreators from "../../../store/effects/BookEffects";
-import {selectBooks, selectError} from "../../../store/selectors/BookSelectors";
+import {selectError, selectStatus} from "../../../store/selectors/BookSelectors";
 import {connect} from "react-redux";
 class BookListItem extends PureComponent {
   static propTypes = {
-    book: PropTypes.object.isRequired
+    book: PropTypes.object.isRequired,
+      error: PropTypes.string.isRequired,
+      loading: PropTypes.bool.isRequired,
+      isMouseOver: PropTypes.bool.isRequired,
+      handleMouseOver:PropTypes.func.isRequired,
+      handleMouseLeave:PropTypes.func.isRequired,
+
   };
     state = {
         isMouseOver: false
@@ -62,8 +68,8 @@ const bookActions = new BookActions();
 const actionCreators = new ActionCreators(bookActions);
 
 const mapStateToProps = (state) => ({
-  books: selectBooks(state),
   error: selectError(state),
+    loading: selectStatus(state),
 });
 const mapDispatchToProps = (dispatch) => {
   return {
