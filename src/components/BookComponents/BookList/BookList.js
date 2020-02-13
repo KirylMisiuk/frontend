@@ -11,16 +11,14 @@ import {
   selectPageSize, selectCurrentPage,
 } from '../../../store/selectors/BookSelectors';
 import BookAddItem from './BookAddItem';
-import Pagination from '../../Pagination';
 import PropTypes from "prop-types";
-
 
 class BookList extends PureComponent {
   static propTypes = {
     currentPage:PropTypes.number.isRequired,
     pageSize:PropTypes.number.isRequired,
     getCount: PropTypes.func.isRequired,
-    error: PropTypes.string.isRequired,
+    error: PropTypes.bool.isRequired,
     getPaginatedBooks: PropTypes.func.isRequired,
     books: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired
@@ -61,10 +59,6 @@ class BookList extends PureComponent {
 
     return (
       <div className="container">
-        <div className="center">
-          <h3>Our Books</h3>
-          <Pagination />
-        </div>
         <div className="box">
           {books.map((book) => (
             <BookListItem book={book} key={book._id} />

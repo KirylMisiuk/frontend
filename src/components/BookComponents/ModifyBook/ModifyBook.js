@@ -14,13 +14,10 @@ import PropTypes from "prop-types";
 
 class EditBook extends PureComponent {
     static propTypes = {
-        book: PropTypes.object.isRequired,
-        error: PropTypes.string.isRequired,
         loading: PropTypes.bool.isRequired,
         getOne: PropTypes.func.isRequired,
         update: PropTypes.func.isRequired,
         create: PropTypes.func.isRequired,
-        onSubmit: PropTypes.func.isRequired
     };
   componentDidMount() {
     this.props.getOne();

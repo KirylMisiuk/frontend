@@ -10,12 +10,8 @@ import {connect} from "react-redux";
 class BookListItem extends PureComponent {
   static propTypes = {
     book: PropTypes.object.isRequired,
-      error: PropTypes.string.isRequired,
+      error: PropTypes.bool.isRequired,
       loading: PropTypes.bool.isRequired,
-      isMouseOver: PropTypes.bool.isRequired,
-      handleMouseOver:PropTypes.func.isRequired,
-      handleMouseLeave:PropTypes.func.isRequired,
-
   };
     state = {
         isMouseOver: false

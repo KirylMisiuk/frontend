@@ -9,6 +9,7 @@ import BookPage from '../BookComponents/BookPage';
 import Navbar from '../Navbar';
 import SearchBar from '../SearchBar';
 import ModifyBook from '../BookComponents/ModifyBook';
+import Pagination from '../Pagination/Pagination';
 
 
 class App extends PureComponent {
@@ -17,6 +18,7 @@ class App extends PureComponent {
       <BrowserRouter>
         <Navbar />
         <SearchBar />
+        <Pagination />
         <Switch>
           <Route path="/" component={BookList} exact />
           <Route path="/books/:id" component={BookPage} />

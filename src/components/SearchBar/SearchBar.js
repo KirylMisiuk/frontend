@@ -8,7 +8,6 @@ import PropTypes from "prop-types";
 
 class SearchBar extends PureComponent {
     static propTypes = {
-        HandleSearch: PropTypes.func.isRequired,
         search:PropTypes.string.isRequired,
         currentPage:PropTypes.number.isRequired,
         pageSize:PropTypes.number.isRequired,
