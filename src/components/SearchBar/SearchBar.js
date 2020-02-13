@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import BookActions from '../../store/actions/BookActions';
+import BookAction from '../../store/actions/BookAction';
 import ActionCreators from '../../store/effects/BookEffects';
-import {selectCurrentPage, selectPageSize, selectSearch} from "../../store/selectors/BookSelectors";
+import {selectSearch} from "../../store/selectors/BookSelector";
+import {selectCurrentPage, selectPageSize} from "../../store/selectors/CommonSelector"
 import PropTypes from "prop-types";
 
 
@@ -45,7 +46,7 @@ class SearchBar extends PureComponent {
     );
   }
 }
-const bookActions = new BookActions();
+const bookActions = new BookAction();
 const actionCreators = new ActionCreators(bookActions);
 
 const mapStateToProps = (state) => ({

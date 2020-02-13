@@ -2,8 +2,8 @@ import React, {PureComponent} from 'react';
 import './styles.css';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import BookActions from '../../../store/actions/BookActions';
-import {selectBook, selectStatus, selectError} from '../../../store/selectors/BookSelectors';
+import BookAction from '../../../store/actions/BookAction';
+import {selectBook, selectStatus, selectError} from '../../../store/selectors/BookSelector';
 import ActionCreators from '../../../store/effects/BookEffects';
 
 class BookPage extends PureComponent {
@@ -67,7 +67,7 @@ class BookPage extends PureComponent {
     );
   }
 }
-const bookActions = new BookActions();
+const bookActions = new BookAction();
 const actionCreators = new ActionCreators(bookActions);
 
 const mapStateToProps = (state) => ({

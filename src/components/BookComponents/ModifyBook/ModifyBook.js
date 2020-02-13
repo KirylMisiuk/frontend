@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Field, FieldArray, reduxForm } from 'redux-form';
 
-import BookActions from '../../../store/actions/BookActions';
-import { selectBook, selectStatus, selectError } from '../../../store/selectors/BookSelectors';
+import BookAction from '../../../store/actions/BookAction';
+import { selectBook, selectStatus, selectError } from '../../../store/selectors/BookSelector';
 import ActionCreators from '../../../store/effects/BookEffects';
 import InputField from './InputField';
 import { date, required } from './validation';
@@ -127,7 +127,7 @@ class EditBook extends PureComponent {
     );
   }
 }
-const bookActions = new BookActions();
+const bookActions = new BookAction();
 const actionCreators = new ActionCreators(bookActions);
 
 const mapStateToProps = (state, props) => {

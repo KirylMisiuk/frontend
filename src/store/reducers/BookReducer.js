@@ -22,7 +22,7 @@ import {
   BOOK_COUNT,
   CURRENT_PAGE,
 
-} from './BookReducerTypes';
+} from './ReducerTypes/BookTypes';
 
 const loadReducer = (state = initalState, action) => {
   console.log(action.type);
@@ -146,18 +146,6 @@ const loadReducer = (state = initalState, action) => {
         ...state,
         status: action.status,
         error: action.message,
-      };
-    }
-    case CURRENT_PAGE: {
-      return {
-        ...state,
-        currentPage: action.currentPage,
-      };
-    }
-    case BOOK_COUNT: {
-      return {
-        ...state,
-        bookCount: action.bookCount,
       };
     }
     default:

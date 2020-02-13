@@ -14,11 +14,10 @@ import {
   UpdateBook,
   UpdateBookFail,
   UpdateBookSuccess,
-  CurrentPage, BookCountFail, BookCount,
-} from './BookActionsTypes';
+} from './ActionTypes/BookTypes';
 
 
-class BookActions {
+class BookAction {
   loadingBooks() {
     return {
       type: BooksLoad,
@@ -139,27 +138,6 @@ class BookActions {
       ...error,
     };
   }
-
-  getCurrentPage(currentPage) {
-    return {
-      type: CurrentPage,
-      currentPage,
-    };
-  }
-
-  getBookCount({ data }) {
-    return {
-      type: BookCount,
-      bookCount: data.length,
-    };
-  }
-
-  getBookCountFail(error) {
-    return {
-      type: BookCountFail,
-      ...error,
-    };
-  }
 }
 
-export default BookActions;
+export default BookAction;

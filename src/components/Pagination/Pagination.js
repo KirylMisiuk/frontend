@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import BookActions from '../../store/actions/BookActions';
+import BookAction from '../../store/actions/BookAction';
 import ActionCreators from '../../store/effects/BookEffects';
-import { selectBookCount, selectCurrentPage, selectPageSize } from '../../store/selectors/BookSelectors';
+import { selectCount, selectCurrentPage, selectPageSize } from '../../store/selectors/CommonSelector';
 import PropTypes from "prop-types";
 import './styles.css'
 import ReactPaginate from 'react-paginate';
+import CommonAction from "../../store/actions/CommonAction";
+import CommonEffects from "../../store/effects/CommonEffects";
 
 class Pagination extends PureComponent {
   static propTypes = {
@@ -20,8 +22,8 @@ class Pagination extends PureComponent {
     getCurrentPage(data.selected+1)
   };
   render() {
-    const {pageSize,bookCount} = this.props;
-    const pagesCount = Math.ceil(bookCount / pageSize);
+    const {pageSize,ItemCount} = this.props;
+    const pagesCount = Math.ceil(ItemCount / pageSize);
     return (
         <div className="center">
           <h3>Our Books</h3>
@@ -45,18 +47,20 @@ class Pagination extends PureComponent {
     );
   }
 }
-const bookActions = new BookActions();
+const bookActions = new BookAction();
 const actionCreators = new ActionCreators(bookActions);
+const commonAction = new CommonAction();
+const commonEffects = new CommonEffects(commonAction);
 
 const mapStateToProps = (state) => ({
   currentPage: selectCurrentPage(state),
   pageSize: selectPageSize(state),
-  bookCount: selectBookCount(state),
+  ItemCount: selectCount(state),
 
 });
 const mapDispatchToProps = (dispatch) => ({
   getCurrentPage: (page) => {
-    dispatch(bookActions.getCurrentPage(page));
+    dispatch(commonAction.getCurrentPage(page));
   },
   getPaginatedBooks: (count, size) => { dispatch(actionCreators.getPaginatedBooks(count, size)); },
 });

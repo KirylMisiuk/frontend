@@ -2,14 +2,16 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import BookListItem from './BookListItem';
 import './styles.css';
-import BookActions from '../../../store/actions/BookActions';
-import ActionCreators from '../../../store/effects/BookEffects';
+import BookAction from '../../../store/actions/BookAction';
+import BookEffects from '../../../store/effects/BookEffects';
+import CommonAction from "../../../store/actions/CommonAction";
+import CommonEffects from "../../../store/effects/CommonEffects";
 import {
   selectBooks,
   selectStatus,
   selectError,
-  selectPageSize, selectCurrentPage,
-} from '../../../store/selectors/BookSelectors';
+} from '../../../store/selectors/BookSelector';
+import {  selectPageSize, selectCurrentPage} from '../../../store/selectors/CommonSelector'
 import BookAddItem from './BookAddItem';
 import PropTypes from "prop-types";
 
@@ -70,9 +72,10 @@ class BookList extends PureComponent {
   }
 }
 
-const bookActions = new BookActions();
-const actionCreators = new ActionCreators(bookActions);
-
+const bookActions = new BookAction();
+const bookEffects = new BookEffects(bookActions);
+ const commonAction = new CommonAction();
+ const commonEffects = new CommonEffects(commonAction);
 
 const mapStateToProps = (state) => ({
   books: selectBooks(state),
@@ -82,8 +85,8 @@ const mapStateToProps = (state) => ({
   pageSize: selectPageSize(state),
 });
 const mapDispatchToProps = (dispatch) => ({
-  getPaginatedBooks: (count, size) => { dispatch(actionCreators.getPaginatedBooks(count, size)); },
-  getCount: () => { dispatch(actionCreators.getBookCount()); },
+  getPaginatedBooks: (count, size) => { dispatch(bookEffects.getPaginatedBooks(count, size)); },
+  getCount: () => { dispatch(commonEffects.getCount('books')); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);

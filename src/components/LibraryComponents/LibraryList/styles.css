@@ -1,0 +1,73 @@
+.box{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.material-icons{
+  font-size: 2.4em;
+  cursor: pointer;
+}
+.card{
+  width: 300px;
+}
+.card .card-image .card-title{
+  color: black;
+  font-weight: 400
+}
+
+.title{
+  overflow: hidden;
+  height: 100px;
+  width: 250px;
+  line-height: 25px;
+}
+
+.title:before {
+  content: "";
+  float: left;
+  width: 5px;
+  height: 100px;
+}
+
+.title > *:first-child {
+  float: right;
+  width: 100%;
+  margin-left: -5px;
+}
+
+.title:after {
+  content: "\02026";
+  box-sizing: content-box;
+  float: right;
+  position: relative;
+  top: -25px;
+  left: 100%;
+  width: 3em;
+  margin-left: -3em;
+  padding-right: 5px;
+  text-align: right;
+  background-size: 100% 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+}
+.icons{
+  right: 0px;
+  bottom: 0px;
+  position: absolute;
+  display: inline;
+}
+.book-delete {
+  grid-area: delete;
+  font-size: 10px;
+  display: inline-block;
+}
+.add-image{
+  position:absolute;
+  font-size: 6rem ;
+  top:35%;
+  left:35%;
+  color: #ff1a23;
+}
+.add-div{
+  height: 350px;
+  width: 250px;
+}
