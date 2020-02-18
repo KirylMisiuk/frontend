@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 import './styles.css'
 import ReactPaginate from 'react-paginate';
 import CommonAction from "../../store/actions/CommonAction";
-import CommonEffects from "../../store/effects/CommonEffects";
 
 class Pagination extends PureComponent {
   static propTypes = {
@@ -21,12 +20,18 @@ class Pagination extends PureComponent {
     const {getCurrentPage} = this.props;
     getCurrentPage(data.selected+1)
   };
+  componentDidUpdate(prevProps) {
+    const { currentPage, pageSize } = this.props;
+    if (currentPage !== prevProps.currentPage) {
+      this.props.getPaginatedBooks(currentPage, pageSize);
+    }
+  }
   render() {
     const {pageSize,ItemCount} = this.props;
     const pagesCount = Math.ceil(ItemCount / pageSize);
+
     return (
         <div className="center">
-          <h3>Our Books</h3>
           <ReactPaginate
               previousLabel={'chevron_left'}
               nextLabel={'chevron_right'}
@@ -50,7 +55,6 @@ class Pagination extends PureComponent {
 const bookActions = new BookAction();
 const actionCreators = new ActionCreators(bookActions);
 const commonAction = new CommonAction();
-const commonEffects = new CommonEffects(commonAction);
 
 const mapStateToProps = (state) => ({
   currentPage: selectCurrentPage(state),

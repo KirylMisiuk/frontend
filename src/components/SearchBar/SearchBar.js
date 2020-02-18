@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import BookAction from '../../store/actions/BookAction';
-import ActionCreators from '../../store/effects/BookEffects';
-import {selectSearch} from "../../store/selectors/BookSelector";
-import {selectCurrentPage, selectPageSize} from "../../store/selectors/CommonSelector"
+import {selectCurrentPage, selectPageSize,selectSearch} from "../../store/selectors/CommonSelector"
 import PropTypes from "prop-types";
+import CommonAction from "../../store/actions/CommonAction";
+import CommonEffects from "../../store/effects/CommonEffects";
+import BookAction from "../../store/actions/BookAction";
+import LibraryAction from "../../store/actions/LibraryAction";
 
 
 class SearchBar extends PureComponent {
@@ -46,18 +47,27 @@ class SearchBar extends PureComponent {
     );
   }
 }
-const bookActions = new BookAction();
-const actionCreators = new ActionCreators(bookActions);
+const bookAction = new BookAction();
+const  libraryAction = new LibraryAction();
+const commonAction = new CommonAction();
 
 const mapStateToProps = (state) => ({
 search: selectSearch(state),
 currentPage: selectCurrentPage(state),
     pageSize: selectPageSize(state),
 });
-const mapDispatchToProps = (dispatch) => ({
-  find: (data,currentPage,pageSize) => {
-    dispatch(actionCreators.search(data,currentPage,pageSize));
-  },
-    getCount: (e) => { dispatch(actionCreators.getBookCount(e)); },
-});
+const mapDispatchToProps = (dispatch,params) => {
+    let commonEffects = new CommonEffects(commonAction, bookAction);
+if(params.location==='libraries') {
+    commonEffects = new CommonEffects(commonAction,libraryAction);
+}
+     return {
+         find: (data, currentPage, pageSize) => {
+             dispatch(commonEffects.search(params.location, data, currentPage, pageSize));
+         },
+         getCount: (e) => {
+             dispatch(commonEffects.getCount(params.location, e));
+         },
+     }
+};
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

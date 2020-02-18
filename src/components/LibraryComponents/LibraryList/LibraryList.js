@@ -9,8 +9,6 @@ import PropTypes from "prop-types";
 import {selectLibraries,selectStatus,selectError} from "../../../store/selectors/LibrarySelector";
 import {selectCurrentPage,selectPageSize} from "../../../store/selectors/CommonSelector"
 import CommonAction from "../../../store/actions/CommonAction";
-
-import BookEffects from "../../../store/effects/BookEffects";
 import CommonEffects from "../../../store/effects/CommonEffects";
 
 
@@ -28,13 +26,6 @@ class LibraryList extends PureComponent {
         const { currentPage, pageSize } = this.props;
         this.props.getCount();
         this.props.getPaginatedBooks(currentPage, pageSize);
-    }
-
-    componentDidUpdate(prevProps) {
-        const { currentPage, pageSize } = this.props;
-        if (currentPage !== prevProps.currentPage) {
-            this.props.getPaginatedBooks(currentPage, pageSize);
-        }
     }
 
     render() {

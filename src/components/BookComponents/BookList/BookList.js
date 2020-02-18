@@ -31,13 +31,6 @@ class BookList extends PureComponent {
     this.props.getPaginatedBooks(currentPage, pageSize);
   }
 
-  componentDidUpdate(prevProps) {
-    const { currentPage, pageSize } = this.props;
-    if (currentPage !== prevProps.currentPage) {
-      this.props.getPaginatedBooks(currentPage, pageSize);
-    }
-  }
-
   render() {
     const {
       books, error, loading,

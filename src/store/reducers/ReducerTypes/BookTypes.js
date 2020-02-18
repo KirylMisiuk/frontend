@@ -2,7 +2,6 @@ export const initalState = {
   books: [],
   loading: false,
   book: {},
-  search: '',
   error: false,
   status: false,
 };
@@ -27,6 +26,4 @@ export const CREATE_BOOK = 'CREATE_BOOK';
 export const CREATE_BOOK_SUCCESS = 'CREATE_BOOK_SUCCESS';
 export const CREATE_BOOK_FAIL = 'CREATE_BOOK_FAIL';
 
-export const SEARCH_BOOK = 'SEARCH_BOOK';
-export const SEARCH_BOOK_SUCCESS = 'SEARCH_BOOK_SUCCESS';
-export const SEARCH_BOOK_FAIL = 'SEARCH_BOOK_FAIL';
+export const UPDATE_BOOKS_STATE = 'UPDATE_BOOKS_STATE';

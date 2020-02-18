@@ -81,22 +81,5 @@ class BookEffects {
         });
     };
   }
-
-  search(search, currentPage, bookSize) {
-    return (dispatch) => {
-      dispatch(this.bookAction.searchBook(search));
-      axios(`http://localhost:2000/books?search=${search}&count=${currentPage}&size=${bookSize}`)
-        .then(({ data }) => {
-          dispatch(this.bookAction.searchBookSuccess(data));
-        })
-        .catch(({ response, message }) => {
-          if (!response) {
-            dispatch(this.bookAction.searchBookFail({ message }));
-          } else {
-            dispatch(this.bookAction.searchBookFail(response.data));
-          }
-        });
-    };
-  }
 }
 export default BookEffects;

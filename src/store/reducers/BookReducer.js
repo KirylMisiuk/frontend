@@ -15,12 +15,7 @@ import {
   UPDATE_BOOK_FAIL,
   CREATE_BOOK_SUCCESS,
   CREATE_BOOK,
-  CREATE_BOOK_FAIL,
-  SEARCH_BOOK_FAIL,
-  SEARCH_BOOK_SUCCESS,
-  SEARCH_BOOK,
-  BOOK_COUNT,
-  CURRENT_PAGE,
+  CREATE_BOOK_FAIL, UPDATE_BOOKS_STATE,
 
 } from './ReducerTypes/BookTypes';
 
@@ -56,7 +51,8 @@ const loadReducer = (state = initalState, action) => {
         status: action.status,
         loading: false,
         error: action.message,
-      }; }
+      };
+    }
 
     case DELETE_BOOK: {
       return {
@@ -124,28 +120,10 @@ const loadReducer = (state = initalState, action) => {
         error: action.message,
       };
     }
-
-
-    case SEARCH_BOOK: {
+    case UPDATE_BOOKS_STATE: {
       return {
         ...state,
-        loading: true,
-        search: action.search,
-      };
-    }
-    case SEARCH_BOOK_SUCCESS: {
-      return {
-        ...state,
-        status: action.status,
-        books: action.data,
-        loading: false,
-      };
-    }
-    case SEARCH_BOOK_FAIL: {
-      return {
-        ...state,
-        status: action.status,
-        error: action.message,
+        books: action.foundData,
       };
     }
     default:

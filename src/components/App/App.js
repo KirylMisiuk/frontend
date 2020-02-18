@@ -3,14 +3,12 @@ import '../styles.css';
 import {
   BrowserRouter, Route, Switch, Redirect,
 } from 'react-router-dom';
-
-import BookList from '../BookComponents/BookList';
 import BookPage from '../BookComponents/BookPage';
 import Navbar from '../Navbar';
-import SearchBar from '../SearchBar';
 import ModifyBook from '../BookComponents/ModifyBook';
-import Pagination from '../Pagination/Pagination';
-import LibraryList from '../LibraryComponents/LibraryList';
+import ModifyLibrary from '../LibraryComponents/ModifyLibrary';
+import BookMain from '../BookComponents/BookMain';
+import LibraryMain from '../LibraryComponents/LibraryMain';
 
 
 class App extends PureComponent {
@@ -18,15 +16,15 @@ class App extends PureComponent {
     return (
       <BrowserRouter>
         <Navbar />
-        <SearchBar />
-        <Pagination />
         <Switch>
-          <Route path="/" component={BookList} exact />
-          <Route path="/libraries" component={LibraryList} exact />
+          <Route path="/" component={BookMain} exact />
           <Route path="/books/:id" component={BookPage} />
-          <Route path="/edit/book/:_id" component={ModifyBook} />
           <Route path="/create/book" component={ModifyBook} />
+          <Route path="/edit/book/:_id" component={ModifyBook} />
 
+          <Route path="/libraries" component={LibraryMain} exact />
+          <Route path="/edit/library/:_id" component={ModifyLibrary} />
+          <Route path="/create/library" component={ModifyLibrary} />
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>

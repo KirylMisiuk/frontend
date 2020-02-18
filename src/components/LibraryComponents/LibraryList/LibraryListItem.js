@@ -4,7 +4,7 @@ import './styles.css';
 import {Link} from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
 import LibraryAction from '../../../store/actions/LibraryAction'
-import ActionCreators from "../../../store/effects/LibraryEffects";
+import LibraryEffects from "../../../store/effects/LibraryEffects";
 import {selectError, selectStatus} from "../../../store/selectors/LibrarySelector";
 import image from "../../../images/library.png";
 import {connect} from "react-redux";
@@ -61,7 +61,7 @@ class LibraryListItem extends PureComponent {
     }
 }
 const libraryActions = new LibraryAction();
-const actionCreators = new ActionCreators(libraryActions);
+const libraryEffects = new LibraryEffects(libraryActions);
 
 const mapStateToProps = (state) => ({
     error: selectError(state),
@@ -70,7 +70,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         delete: (id) => {
-            dispatch(actionCreators.delete(id));
+            dispatch(libraryEffects.delete(id));
         }
     };
 };

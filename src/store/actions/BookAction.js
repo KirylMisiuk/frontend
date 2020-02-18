@@ -10,9 +10,9 @@ import {
   FailLoadBook,
   FailLoadBooks,
   LoadBooksSuccess,
-  LoadBookSuccess, SearchBook, SearchBookFail, SearchBookSuccess,
+  LoadBookSuccess,
   UpdateBook,
-  UpdateBookFail,
+  UpdateBookFail, UpdateBooksState,
   UpdateBookSuccess,
 } from './ActionTypes/BookTypes';
 
@@ -118,24 +118,10 @@ class BookAction {
     };
   }
 
-  searchBook(search) {
+  updateState({ data }) {
     return {
-      type: SearchBook,
-      search,
-    };
-  }
-
-  searchBookSuccess(books) {
-    return {
-      type: SearchBookSuccess,
-      ...books,
-    };
-  }
-
-  searchBookFail(error) {
-    return {
-      type: SearchBookFail,
-      ...error,
+      type: UpdateBooksState,
+      foundData: data,
     };
   }
 }

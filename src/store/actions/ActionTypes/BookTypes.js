@@ -18,9 +18,4 @@ export const CreateBook = 'CREATE_BOOK';
 export const CreateBookSuccess = 'CREATE_BOOK_SUCCESS';
 export const CreateBookFail = 'CREATE_BOOK_FAIL';
 
-
-export const SearchBook = 'SEARCH_BOOK';
-export const SearchBookSuccess = 'SEARCH_BOOK_SUCCESS';
-export const SearchBookFail = 'SEARCH_BOOK_FAIL';
-
-
+export const UpdateBooksState = 'UPDATE_BOOKS_STATE';

@@ -1,6 +1,6 @@
 import {
   CURRENT_PAGE,
-  initalState, ITEM_COUNT,
+  initalState, ITEM_COUNT, SEARCH_ITEMS, SEARCH_ITEMS_FAIL, SEARCH_ITEMS_SUCCESS,
 } from './ReducerTypes/CommonTypes';
 
 const commonReducer = (state = initalState, action) => {
@@ -16,6 +16,28 @@ const commonReducer = (state = initalState, action) => {
       return {
         ...state,
         ItemCount: action.ItemCount,
+      };
+    }
+    case SEARCH_ITEMS: {
+      return {
+        ...state,
+        loading: true,
+        search: action.search,
+      };
+    }
+    case SEARCH_ITEMS_SUCCESS: {
+      return {
+        ...state,
+        status: action.status,
+        foundData: action.data,
+        loading: false,
+      };
+    }
+    case SEARCH_ITEMS_FAIL: {
+      return {
+        ...state,
+        status: action.status,
+        error: action.message,
       };
     }
     default:
