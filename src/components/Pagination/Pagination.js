@@ -20,12 +20,7 @@ class Pagination extends PureComponent {
     const {getCurrentPage} = this.props;
     getCurrentPage(data.selected+1)
   };
-  componentDidUpdate(prevProps) {
-    const { currentPage, pageSize } = this.props;
-    if (currentPage !== prevProps.currentPage) {
-      this.props.getPaginatedBooks(currentPage, pageSize);
-    }
-  }
+
   render() {
     const {pageSize,ItemCount} = this.props;
     const pagesCount = Math.ceil(ItemCount / pageSize);

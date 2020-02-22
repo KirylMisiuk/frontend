@@ -9,6 +9,7 @@ import ModifyBook from '../BookComponents/ModifyBook';
 import ModifyLibrary from '../LibraryComponents/ModifyLibrary';
 import BookMain from '../BookComponents/BookMain';
 import LibraryMain from '../LibraryComponents/LibraryMain';
+import LibraryPage from '../LibraryComponents/LibraryPage';
 
 
 class App extends PureComponent {
@@ -25,6 +26,7 @@ class App extends PureComponent {
           <Route path="/libraries" component={LibraryMain} exact />
           <Route path="/edit/library/:_id" component={ModifyLibrary} />
           <Route path="/create/library" component={ModifyLibrary} />
+          <Route path="/libraries/:id" component={LibraryPage} />
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>

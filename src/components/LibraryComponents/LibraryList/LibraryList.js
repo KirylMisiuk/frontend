@@ -10,6 +10,7 @@ import {selectLibraries,selectStatus,selectError} from "../../../store/selectors
 import {selectCurrentPage,selectPageSize} from "../../../store/selectors/CommonSelector"
 import CommonAction from "../../../store/actions/CommonAction";
 import CommonEffects from "../../../store/effects/CommonEffects";
+import LibraryAddItem from "./LibraryAddItem";
 
 
 class LibraryList extends PureComponent {
@@ -18,16 +19,21 @@ class LibraryList extends PureComponent {
         pageSize:PropTypes.number.isRequired,
         getCount: PropTypes.func.isRequired,
         error: PropTypes.bool.isRequired,
-        getPaginatedBooks: PropTypes.func.isRequired,
+        getPaginatedLibraries: PropTypes.func.isRequired,
         libraries: PropTypes.array.isRequired,
         loading: PropTypes.bool.isRequired
     };
     componentDidMount() {
         const { currentPage, pageSize } = this.props;
         this.props.getCount();
-        this.props.getPaginatedBooks(currentPage, pageSize);
+        this.props.getPaginatedLibraries(currentPage, pageSize);
     }
-
+    componentDidUpdate(prevProps) {
+        const { currentPage, pageSize } = this.props;
+        if (currentPage !== prevProps.currentPage) {
+            this.props.getPaginatedLibraries(currentPage, pageSize);
+        }
+    }
     render() {
         const {
             libraries, error, loading,
@@ -55,7 +61,7 @@ class LibraryList extends PureComponent {
                     {libraries.map((library) => (
                         <LibraryListItem library={library} key={library._id} />
                     ))}
-                    {/*<BookAddItem />*/}
+                    <LibraryAddItem />
                 </div>
             </div>
         );
@@ -75,7 +81,7 @@ const mapStateToProps = (state) => ({
     pageSize: selectPageSize(state),
 });
 const mapDispatchToProps = (dispatch) => ({
-    getPaginatedBooks: (count, size) => { dispatch(libraryEffects.getLibraries(count, size)); },
+    getPaginatedLibraries: (count, size) => { dispatch(libraryEffects.getLibraries(count, size)); },
     getCount: () => { dispatch(commonEffects.getCount('libraries')); },
 });
 

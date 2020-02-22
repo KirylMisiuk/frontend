@@ -1,11 +1,11 @@
-.book-container {
+.library-container {
   width: 900px;
   display: flex;
   justify-content: space-around;
   margin: 20px auto;
 }
 
-.book-info {
+.library-info {
   width: 400px;
   height: 500px;
   display: flex;
@@ -13,7 +13,8 @@
   justify-content: space-between;
 }
 
-.book-text {
+.library-text {
   overflow-y: scroll;
   max-height: 400px;
 }
+

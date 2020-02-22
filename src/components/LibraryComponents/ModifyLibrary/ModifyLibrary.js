@@ -70,6 +70,15 @@ class ModifyLibrary extends PureComponent {
             validate={required}
           />
         </div>
+          <div className="row">
+              <Field
+                  name="about"
+                  label="About"
+                  type="text"
+                  component={InputField}
+                  validate={required}
+              />
+          </div>
         <FieldArray name="archive" component={IdField} />
         <button className="btn waves-effect waves-light red accent-1" type="button" onClick={this.cancelHandler.bind(this)} name="action">
               Cancel
@@ -103,6 +112,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => {
   const { match: { params } } = props;
   return {
+
     getOne: () => { dispatch(libraryEffects.getOne(params._id)); },
     update: (data) => {
       dispatch(libraryEffects.update(params._id, data));
