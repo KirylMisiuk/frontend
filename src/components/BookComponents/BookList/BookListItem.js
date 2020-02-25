@@ -8,21 +8,27 @@ import ActionCreators from "../../../store/effects/BookEffects";
 import {selectError, selectStatus} from "../../../store/selectors/BookSelector";
 import {connect} from "react-redux";
 import img from '../../../images/book.png'
+import CommonAction from "../../../store/actions/CommonAction";
+import CommonEffects from "../../../store/effects/CommonEffects";
+import {selectCurrentPage, selectPageSize} from "../../../store/selectors/CommonSelector";
 class BookListItem extends PureComponent {
     static propTypes = {
         book: PropTypes.object.isRequired,
         error: PropTypes.bool.isRequired,
         loading: PropTypes.bool.isRequired,
+        getPaginatedBooks: PropTypes.func.isRequired,
+        getCount: PropTypes.func.isRequired
     };
     state = {
         isMouseOver: false
     };
     handleMouseOver = () => this.setState({isMouseOver: true});
     handleMouseLeave = () => this.setState({isMouseOver: false});
-    handleDeleteButton = () => {
-        const {book} = this.props;
-        this.props.delete(book._id)
+     handleDeleteButton = () => {
+       const {book} = this.props;
+       this.props.delete(book._id);
     };
+
 
     render() {
         const {book} = this.props;
@@ -51,7 +57,7 @@ class BookListItem extends PureComponent {
                                 <i className='material-icons'>edit</i>
                             </div>
                         </Link>
-                        <div onClick={this.handleDeleteButton} className='book-delete'>
+                        <div onClick={this.handleDeleteButton}  className='book-delete'>
                             <i className='material-icons'>delete</i>
                         </div>
                     </div>
@@ -62,17 +68,23 @@ class BookListItem extends PureComponent {
     }
 }
 const bookActions = new BookAction();
-const actionCreators = new ActionCreators(bookActions);
+const bookEffects = new ActionCreators(bookActions);
+const commonAction = new CommonAction();
+const commonEffects = new CommonEffects(commonAction);
 
 const mapStateToProps = (state) => ({
     error: selectError(state),
     loading: selectStatus(state),
+    currentPage: selectCurrentPage(state),
+    pageSize: selectPageSize(state),
 });
 const mapDispatchToProps = (dispatch) => {
     return {
         delete: (id) => {
-            dispatch(actionCreators.delete(id));
-        }
+            dispatch(bookEffects.delete(id));
+        },
+        getPaginatedBooks: (count, size) => { dispatch(bookEffects.getPaginatedBooks(count, size)); },
+        getCount: () => { dispatch(commonEffects.getCount('books')); },
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(BookListItem);

@@ -41,7 +41,9 @@ class BookEffects {
     return (dispatch) => {
       dispatch(this.bookAction.deleteBook());
       axios.delete(`http://localhost:2000/books?_id=${_id}`)
-        .then(({ data }) => dispatch(this.bookAction.deleteBookSuccess(data)))
+        .then(({ data }) => {
+          dispatch(this.bookAction.deleteBookSuccess(data));
+        })
         .catch(({ response, message }) => {
           if (!response) {
             dispatch(this.bookAction.deleteBookFail({ message }));

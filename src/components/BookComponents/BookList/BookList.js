@@ -9,9 +9,9 @@ import CommonEffects from "../../../store/effects/CommonEffects";
 import {
   selectBooks,
   selectStatus,
-  selectError,
+  selectError, selectBook,
 } from '../../../store/selectors/BookSelector';
-import {  selectPageSize, selectCurrentPage} from '../../../store/selectors/CommonSelector'
+import {selectPageSize, selectCurrentPage, selectSearch, selectCount} from '../../../store/selectors/CommonSelector'
 import BookAddItem from './BookAddItem';
 import PropTypes from "prop-types";
 
@@ -31,8 +31,8 @@ class BookList extends PureComponent {
     this.props.getPaginatedBooks(currentPage, pageSize);
   }
   componentDidUpdate(prevProps) {
-    const { currentPage, pageSize } = this.props;
-    if (currentPage !== prevProps.currentPage) {
+    const { currentPage, pageSize,book} = this.props;
+    if (currentPage !== prevProps.currentPage|| book !== prevProps.book) {
       this.props.getPaginatedBooks(currentPage, pageSize);
     }
   }
@@ -77,10 +77,13 @@ const bookEffects = new BookEffects(bookActions);
 
 const mapStateToProps = (state) => ({
   books: selectBooks(state),
+    book:selectBook(state),
   loading: selectStatus(state),
   error: selectError(state),
   currentPage: selectCurrentPage(state),
   pageSize: selectPageSize(state),
+  search: selectSearch(state),
+  ItemCount: selectCount(state)
 });
 const mapDispatchToProps = (dispatch) => ({
   getPaginatedBooks: (count, size) => { dispatch(bookEffects.getPaginatedBooks(count, size)); },

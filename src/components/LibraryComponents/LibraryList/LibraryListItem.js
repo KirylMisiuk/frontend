@@ -8,11 +8,15 @@ import LibraryEffects from "../../../store/effects/LibraryEffects";
 import {selectError, selectStatus} from "../../../store/selectors/LibrarySelector";
 import image from "../../../images/library.png";
 import {connect} from "react-redux";
+import CommonAction from "../../../store/actions/CommonAction";
+import CommonEffects from "../../../store/effects/CommonEffects";
 class LibraryListItem extends PureComponent {
     static propTypes = {
         library: PropTypes.object.isRequired,
         error: PropTypes.bool.isRequired,
         loading: PropTypes.bool.isRequired,
+        getCount:PropTypes.func.isRequired,
+        getPaginatedLibraries:PropTypes.func.isRequired
     };
     state = {
         isMouseOver: false
@@ -62,7 +66,8 @@ class LibraryListItem extends PureComponent {
 }
 const libraryActions = new LibraryAction();
 const libraryEffects = new LibraryEffects(libraryActions);
-
+const commonAction = new CommonAction();
+const commonEffects = new CommonEffects(commonAction);
 const mapStateToProps = (state) => ({
     error: selectError(state),
     loading: selectStatus(state),
@@ -71,7 +76,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         delete: (id) => {
             dispatch(libraryEffects.delete(id));
-        }
+        },
+        getPaginatedLibraries: (count, size) => { dispatch(libraryEffects.getLibraries(count, size)); },
+        getCount: () => { dispatch(commonEffects.getCount('libraries')); },
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(LibraryListItem);

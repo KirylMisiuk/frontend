@@ -20,6 +20,10 @@ class Pagination extends PureComponent {
     const {getCurrentPage} = this.props;
     getCurrentPage(data.selected+1)
   };
+componentWillUnmount() {
+  const {resetState}= this.props;
+  resetState()
+}
 
   render() {
     const {pageSize,ItemCount} = this.props;
@@ -62,5 +66,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(commonAction.getCurrentPage(page));
   },
   getPaginatedBooks: (count, size) => { dispatch(actionCreators.getPaginatedBooks(count, size)); },
+  resetState:() => dispatch(commonAction.reset())
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

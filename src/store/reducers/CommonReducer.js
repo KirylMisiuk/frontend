@@ -1,6 +1,6 @@
 import {
   CURRENT_PAGE,
-  initalState, ITEM_COUNT, SEARCH_ITEMS, SEARCH_ITEMS_FAIL, SEARCH_ITEMS_SUCCESS,
+  initalState, ITEM_COUNT, RESET, SEARCH_ITEMS, SEARCH_ITEMS_FAIL, SEARCH_ITEMS_SUCCESS,
 } from './ReducerTypes/CommonTypes';
 
 const commonReducer = (state = initalState, action) => {
@@ -39,6 +39,9 @@ const commonReducer = (state = initalState, action) => {
         status: action.status,
         error: action.message,
       };
+    }
+    case RESET: {
+      return initalState;
     }
     default:
       return state;

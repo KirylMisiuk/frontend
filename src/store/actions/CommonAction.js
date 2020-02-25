@@ -1,4 +1,7 @@
-import {CurrentPage, ItemCount, ItemCountFail, Search, SearchFail, SearchSuccess} from './ActionTypes/CommonTypes';
+import {
+  CurrentPage, ItemCount, ItemCountFail, ResetState, Search, SearchFail, SearchSuccess,
+} from './ActionTypes/CommonTypes';
+
 class CommonAction {
   getCount({ data }) {
     return {
@@ -39,6 +42,12 @@ class CommonAction {
     return {
       type: SearchFail,
       ...error,
+    };
+  }
+
+  reset() {
+    return {
+      type: ResetState,
     };
   }
 }

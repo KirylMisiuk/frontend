@@ -13,4 +13,4 @@ export const SEARCH_ITEMS = 'SEARCH_ITEMS';
 export const SEARCH_ITEMS_SUCCESS = 'SEARCH_ITEMS_SUCCESS';
 export const SEARCH_ITEMS_FAIL = 'SEARCH_ITEMS_FAIL';
 
-
+export const RESET = 'RESET_STATE';

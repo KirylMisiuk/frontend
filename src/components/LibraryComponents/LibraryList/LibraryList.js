@@ -6,7 +6,7 @@ import LibraryAction from '../../../store/actions/LibraryAction';
 import LibraryEffects from '../../../store/effects/LibraryEffects';
 
 import PropTypes from "prop-types";
-import {selectLibraries,selectStatus,selectError} from "../../../store/selectors/LibrarySelector";
+import {selectLibraries, selectStatus, selectError, selectLibrary} from "../../../store/selectors/LibrarySelector";
 import {selectCurrentPage,selectPageSize} from "../../../store/selectors/CommonSelector"
 import CommonAction from "../../../store/actions/CommonAction";
 import CommonEffects from "../../../store/effects/CommonEffects";
@@ -29,11 +29,12 @@ class LibraryList extends PureComponent {
         this.props.getPaginatedLibraries(currentPage, pageSize);
     }
     componentDidUpdate(prevProps) {
-        const { currentPage, pageSize } = this.props;
-        if (currentPage !== prevProps.currentPage) {
+        const { currentPage, pageSize,library} = this.props;
+        if (currentPage !== prevProps.currentPage || library !== prevProps.library) {
             this.props.getPaginatedLibraries(currentPage, pageSize);
         }
     }
+
     render() {
         const {
             libraries, error, loading,
@@ -79,6 +80,7 @@ const mapStateToProps = (state) => ({
     error: selectError(state),
     currentPage: selectCurrentPage(state),
     pageSize: selectPageSize(state),
+    library: selectLibrary(state)
 });
 const mapDispatchToProps = (dispatch) => ({
     getPaginatedLibraries: (count, size) => { dispatch(libraryEffects.getLibraries(count, size)); },
