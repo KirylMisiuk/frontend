@@ -31,6 +31,7 @@ class LibraryList extends PureComponent {
     componentDidUpdate(prevProps) {
         const { currentPage, pageSize,library} = this.props;
         if (currentPage !== prevProps.currentPage || library !== prevProps.library) {
+            this.props.getCount();
             this.props.getPaginatedLibraries(currentPage, pageSize);
         }
     }

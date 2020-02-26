@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 class InputField extends PureComponent {
     static propTypes = {
-      input: PropTypes.object.isRequired,
+        input: PropTypes.object.isRequired,
         label: PropTypes.string.isRequired,
         type:PropTypes.string.isRequired
     };

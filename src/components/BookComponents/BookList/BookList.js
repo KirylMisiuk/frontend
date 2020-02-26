@@ -33,6 +33,7 @@ class BookList extends PureComponent {
   componentDidUpdate(prevProps) {
     const { currentPage, pageSize,book} = this.props;
     if (currentPage !== prevProps.currentPage|| book !== prevProps.book) {
+      this.props.getCount();
       this.props.getPaginatedBooks(currentPage, pageSize);
     }
   }
@@ -77,7 +78,7 @@ const bookEffects = new BookEffects(bookActions);
 
 const mapStateToProps = (state) => ({
   books: selectBooks(state),
-    book:selectBook(state),
+  book:selectBook(state),
   loading: selectStatus(state),
   error: selectError(state),
   currentPage: selectCurrentPage(state),

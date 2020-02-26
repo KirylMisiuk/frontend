@@ -2,8 +2,12 @@ import { Field } from 'redux-form';
 import React, { PureComponent } from 'react';
 import InputField from './InputField';
 import './styles.css';
+import PropTypes from "prop-types";
 
 class IdField extends PureComponent {
+    static propTypes = {
+        fields: PropTypes.array.isRequired,
+    };
   render() {
     const { fields } = this.props;
     return (
