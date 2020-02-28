@@ -52,8 +52,8 @@ const  libraryAction = new LibraryAction();
 const commonAction = new CommonAction();
 
 const mapStateToProps = (state) => ({
-search: selectSearch(state),
-currentPage: selectCurrentPage(state),
+    search: selectSearch(state),
+    currentPage: selectCurrentPage(state),
     pageSize: selectPageSize(state),
 });
 const mapDispatchToProps = (dispatch,params) => {

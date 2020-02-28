@@ -38,7 +38,7 @@ componentWillUnmount() {
               previousLinkClassName={'material-icons'}
               breakLabel={'...'}
               breakClassName={'break-me'}
-              pageCount={pagesCount}
+              pageCount={pagesCount||1}
               marginPagesDisplayed={2}
               pageRangeDisplayed={3}
               onPageChange={this.handlePageClick}
